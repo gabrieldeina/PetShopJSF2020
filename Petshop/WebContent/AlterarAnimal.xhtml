@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<h2>Alterar Animal</h2>
+
+			<h:inputHidden value="#{animalBean.animal.id}" />
+
+			<h:outputLabel value="Nome: " style="margin-right: 5px" />
+			<h:outputLabel value="#{animalBean.animal.nome}" />
+			<br />
+
+			<h:outputLabel value="Tipo: " style="margin-right: 5px" />
+			<h:outputLabel value="#{animalBean.animal.tipo}" />
+			<br />
+
+			<h:outputLabel value="Cliente:" />
+			<h:selectOneMenu value="#{animalBean.animal.cliente}"
+				styleClass="form-control col-4"
+				converter="omnifaces.SelectItemsIndexConverter"
+				style="margin-bottom: 5px">
+				<f:selectItem id="txtCliente" itemValue="#{null}"
+					itemLabel=" -- PRECISA ESTAR CADASTRADO -- " required="true"
+					requiredMessage="Escolha um Cliente" />
+				<f:selectItems value="#{animalBean.clientes}" var="cliente"
+					itemLabel="#{cliente.nome}" itemValue="#{cliente}" />
+				<h:message for="txtCliente" styleClass="text-danger" />
+			</h:selectOneMenu>
+
+			<h:commandButton action="#{animalBean.alterar()}" value="Salvar"
+				styleClass="btn btn-primary" />
+			<br />
+
+			<h:messages globalOnly="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

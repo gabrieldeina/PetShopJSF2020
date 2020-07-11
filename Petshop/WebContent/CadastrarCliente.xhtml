@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<h2>Cadastrar Cliente</h2>
+
+			<h:outputLabel value="Nome:" style="margin-right: 5px" />
+			<h:inputText id="txtNome" value="#{clienteBean.cliente.nome}"
+				pt:placeholder="Nome Completo" required="true"
+				requiredMessage="Campo Obrigatório" style="margin-right: 5px" />
+			<h:message for="txtNome" styleClass="text-danger" />
+			<br />
+
+			<h:outputLabel value="CPF:" style="margin-right: 5px" />
+			<h:inputText id="txtCpf" value="#{clienteBean.cliente.cpf}"
+				pt:placeholder="Digite apenas números" required="true"
+				requiredMessage="Campo Obrigatório" style="margin-right: 5px" />
+			<h:message for="txtCpf" styleClass="text-danger" />
+			<br />
+
+			<h:outputLabel value="Telefone:" style="margin-right: 5px" />
+			<h:inputText id="txtTelefone" value="#{clienteBean.cliente.telefone}"
+				pt:placeholder="Digite apenas números" required="true"
+				requiredMessage="Campo Obrigatório" />
+			<h:message for="txtTelefone" styleClass="text-danger" />
+			<br />
+
+			<h:outputLabel value="Endereço:" style="margin-right: 5px" />
+			<h:inputText id="txtEndereco" value="#{clienteBean.cliente.endereco}"
+				pt:placeholder="Ex.: Rua Joao Maria, 123" required="true"
+				requiredMessage="Campo Obrigatório" />
+			<h:message for="txtEndereco" styleClass="text-danger" />
+			<br />
+
+			<h:link outcome="GerenciarCliente" value="Cancelar"
+				styleClass="btn btn-warning" style="margin-right: 5px" />
+			<h:commandButton action="#{clienteBean.cadastrar()}"
+				value="Cadastrar" styleClass="btn btn-primary" />
+			<br />
+			<h:messages globalOnly="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

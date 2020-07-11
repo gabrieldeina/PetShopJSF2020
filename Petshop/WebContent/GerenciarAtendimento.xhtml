@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h2 style="margin-bottom: 20px; text-align: center">Gerenciamento
+			de Atendimentos</h2>
+
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+
+		<h:link outcome="Index" value="Página Inicial"
+			styleClass="btn btn-primary" style="margin-right: 5px" />
+		<h:link outcome="CadastrarAtendimento" value="Novo Atendimento"
+			styleClass="btn btn-primary" />
+
+		<h:form style="margin-top: 20px">
+			<h:dataTable value="#{atendimentoBean.atendimentos}"
+				var="atendimento" styleClass="table table-striped table-hover">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{atendimento.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Funcionario</f:facet>
+					<h:outputText value="#{atendimento.funcionario.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Cliente</f:facet>
+					<h:outputText value="#{atendimento.animal.cliente.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Animal</f:facet>
+					<h:outputText value="#{atendimento.animal.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Procedimento</f:facet>
+					<h:outputText value="#{atendimento.procedimento.tipo}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Data</f:facet>
+					<h:outputText value="#{atendimento.data}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Hora</f:facet>
+					<h:outputText value="#{atendimento.hora}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Remover</f:facet>
+					<h:commandButton id="txtRemover"
+						action="#{atendimentoBean.remover(atendimento)}" value="Remover"
+						styleClass="btn btn-danger" />
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<h2>Alterar Atendimento</h2>
+
+			<h:inputHidden value="#{atendimentoBean.atendimento.id}" />
+
+			<h:outputLabel value="Cachorro: " style="margin-right: 5px" />
+			<h:outputLabel value="#{atendimentoBean.atendimento.animal.nome}" />
+			<br />
+
+			<h:outputLabel value="Funcionário: " style="margin-right: 5px" />
+			<h:outputLabel
+				value="#{atendimentoBean.atendimento.funcionario.nome}" />
+			<br />
+
+			<h:outputLabel value="Procedimento:" style="margin-right: 5px" />
+			<h:selectOneMenu id="txtProcedimento"
+				value="#{atendimentoBean.atendimento.procedimento}"
+				styleClass="form-control col-4"
+				converter="omnifaces.SelectItemsIndexConverter"
+				style="margin-bottom: 5px" required="true"
+				requiredMessage="Escolha um Procedimento">
+				<f:selectItem itemValue="#{atendimentoBean.atendimento.procedimento}"
+					itemLabel=" -- PRECISA ESTAR CADASTRADO -- " />
+				<f:selectItems value="#{procedimentoBean.procedimentos}"
+					var="procedimento" itemLabel="#{procedimento.tipo}"
+					itemValue="#{procedimento}" />
+				<h:message for="txtProcedimento" styleClass="text-danger" />
+			</h:selectOneMenu>
+
+			<h:commandButton action="#{animalBean.alterar()}" value="Salvar"
+				styleClass="btn btn-primary" />
+			<br />
+
+			<h:messages globalOnly="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

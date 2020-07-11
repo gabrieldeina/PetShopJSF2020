@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<h2>Cadastrar Animal</h2>
+			<h:outputLabel value="Nome:" style="margin-right: 5px" />
+			<h:inputText id="txtNome" value="#{animalBean.animal.nome}"
+				required="true" requiredMessage="Campo Obrigatório"
+				style="margin-right: 5px" />
+			<h:message for="txtNome" styleClass="text-danger" />
+			<br />
+
+			<!-- <h:outputLabel value="Tipo:" style="margin-right: 5px" />
+			<h:inputText id="txtTipo" value="#{animalBean.animal.tipo}"
+				pt:placeholder="Cachorro | Gato | etc" required="true"
+				requiredMessage="Campo Obrigatório" />
+			<h:message for="txtTipo" styleClass="text-danger" />
+			<br /> -->
+
+			<h:outputLabel value="Tipo: "
+				style="margin-right: 5px" />
+			<h:selectOneMenu id="txtTipo"
+				value="#{animalBean.animal.tipo}"
+				styleClass="form-control col-4"
+				converter="omnifaces.SelectItemsIndexConverter"
+				style="margin-bottom: 5px" required="true"
+				requiredMessage="Escolha o tipo do animal">
+				<f:selectItem itemValue="#{null}" itemLabel=" -- ESCOLHA -- " />
+				<f:selectItem itemValue="Cachorro" itemLabel="Cachorro" />
+				<f:selectItem itemValue="Gato" itemLabel="Gato" />
+				<f:selectItem itemValue="Passaro" itemLabel="Pássaro" />
+				<f:selectItem itemValue="Macaco" itemLabel="Macaco" />
+				<f:selectItem itemValue="Hamster" itemLabel="Hamster" />
+				<h:message for="txtTipo" styleClass="text-danger" />
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Cliente:" style="margin-right: 5px" />
+			<h:selectOneMenu id="txtCliente" value="#{animalBean.animal.cliente}"
+				styleClass="form-control col-4"
+				converter="omnifaces.SelectItemsIndexConverter"
+				style="margin-bottom: 5px" required="true"
+				requiredMessage="Escolha um Cliente">
+				<f:selectItem itemValue="#{null}"
+					itemLabel=" -- PRECISA ESTAR CADASTRADO -- " />
+				<f:selectItems value="#{animalBean.clientes}" var="cliente"
+					itemLabel="#{cliente.nome}" itemValue="#{cliente}" />
+				<h:message for="txtCliente" styleClass="text-danger" />
+			</h:selectOneMenu>
+
+			<h:link outcome="GerenciarAnimal" value="Cancelar"
+				styleClass="btn btn-warning" style="margin-right: 5px" />
+			<h:commandButton action="#{animalBean.cadastrar()}" value="Cadastrar"
+				styleClass="btn btn-primary" />
+			<br />
+			<h:messages globalOnly="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

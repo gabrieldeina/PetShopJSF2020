@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<h2>Alterar Procedimento</h2>
+
+			<h:inputHidden value="#{procedimentoBean.procedimento.id}" />
+
+			<h:outputLabel value="Tipo: " style="margin-right: 5px" />
+			<h:outputLabel value="#{procedimentoBean.procedimento.tipo}" />
+			<br />
+
+			<h:outputLabel value="Valor:" style="margin-right: 5px" />
+			<h:inputText id="txtValor"
+				value="#{procedimentoBean.procedimento.valor}" pt:placeholder="0.00"
+				required="true" requiredMessage="Campo Obrigatório"
+				style="margin-right: 5px" />
+			<h:message for="txtValor" styleClass="text-danger" />
+			<br />
+
+			<h:commandButton action="#{procedimentoBean.alterar()}"
+				value="Salvar" styleClass="btn btn-primary" />
+			<br />
+
+			<h:messages globalOnly="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h2 style="margin-bottom: 20px; text-align: center">Gerenciamento de Funcionários</h2>
+		<h:link outcome="Index" value="Página Inicial"
+			styleClass="btn btn-primary" style="margin-right: 5px" />
+		<h:link outcome="CadastrarFuncionario" value="Novo Funcionário"
+			styleClass="btn btn-primary" />
+		<h:form style="margin-top: 20px">
+			<h:dataTable value="#{funcionarioBean.funcionarios}"
+				var="funcionario" styleClass="table table-striped table-hover">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{funcionario.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{funcionario.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">CPF</f:facet>
+					<h:outputText value="#{funcionario.cpf}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Telefone</f:facet>
+					<h:outputText value="#{funcionario.telefone}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Endereço</f:facet>
+					<h:outputText value="#{funcionario.endereco}" />
+				</h:column>
+
+
+				<!-- <h:column>
+					<f:facet name="header">Estado</f:facet>
+					<h:outputText value="#{funcionario.estado}" />
+				</h:column> -->
+
+				<h:column>
+					<f:facet name="header">Alterar</f:facet>
+					<h:commandButton action="#{funcionarioBean.detalhar()}"
+						value="Alterar" styleClass="btn btn-warning">
+						<f:param name="idFuncionario" value="#{funcionario.id}" />
+					</h:commandButton>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

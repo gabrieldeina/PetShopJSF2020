@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h2 style="margin-bottom: 20px; text-align: center">Gerenciamento
+			Petshop</h2>
+		<h:form style="margin-top: 20px; text-align: center">
+			<h:link outcome="GerenciarCliente" value="Gerenciar Clientes"
+				styleClass="btn btn-primary"
+				style="margin-right: 5px; width: 150px; height: 60px" />
+			<h:link outcome="GerenciarAnimal" value="Gerenciar Animais"
+				styleClass="btn btn-primary"
+				style="margin-right: 5px; width: 150px; height: 60px" />
+			<h:link outcome="GerenciarFuncionario" value="Gerenciar Funcionarios"
+				styleClass="btn btn-primary"
+				style="margin-right: 5px; width: 150px; height: 60px" />
+			<h:link outcome="GerenciarProcedimento"
+				value="Gerenciar Procedimentos" styleClass="btn btn-primary"
+				style="margin-right: 5px; width: 150px; height: 60px" />
+			<h:link outcome="GerenciarAtendimento" value="Gerenciar Atendimentos"
+				styleClass="btn btn-primary"
+				style="margin-right: 5px; width: 150px; height: 60px" />
+
+			<br />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h2 style="margin-bottom: 20px; text-align: center">Gerenciamento
+			de Procedimentos</h2>
+		<h:link outcome="Index" value="Página Inicial"
+			styleClass="btn btn-primary" style="margin-right: 5px" />
+		<h:link outcome="CadastrarProcedimento" value="Novo Procedimento"
+			styleClass="btn btn-primary" />
+		<h:form style="margin-top: 20px">
+			<h:dataTable value="#{procedimentoBean.procedimentos}"
+				var="procedimento" styleClass="table table-striped table-hover">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{procedimento.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Tipo</f:facet>
+					<h:outputText value="#{procedimento.tipo}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Valor R$</f:facet>
+					<h:outputText value="#{procedimento.valor}">
+						<f:convertNumber pattern="#,##0.00" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Alterar</f:facet>
+					<h:commandButton action="#{procedimentoBean.detalhar()}"
+						value="Alterar" styleClass="btn btn-warning">
+						<f:param name="idProcedimento" value="#{procedimento.id}" />
+					</h:commandButton>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

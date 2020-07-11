@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h2 style="margin-bottom: 20px; text-align: center">Gerenciamento de Clientes</h2>
+		<h:link outcome="Index" value="Página Inicial"
+			styleClass="btn btn-primary" style="margin-right: 5px" />
+		<h:link outcome="CadastrarCliente" value="Novo Cliente"
+			styleClass="btn btn-primary" />
+		<h:form style="margin-top: 20px">
+			<h:dataTable value="#{clienteBean.clientes}" var="cliente"
+				styleClass="table table-striped table-hover">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{cliente.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{cliente.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">CPF</f:facet>
+					<h:outputText value="#{cliente.cpf}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Telefone</f:facet>
+					<h:outputText value="#{cliente.telefone}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Endereço</f:facet>
+					<h:outputText value="#{cliente.endereco}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Alterar</f:facet>
+					<h:commandButton action="#{clienteBean.detalhar()}" value="Alterar"
+						styleClass="btn btn-warning">
+						<f:param name="idCliente" value="#{cliente.id}" />
+					</h:commandButton>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

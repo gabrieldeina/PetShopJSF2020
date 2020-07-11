@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h2 style="margin-bottom: 20px; text-align: center">Gerenciamento de Animais</h2>
+		<h:link outcome="Index" value="Página Inicial"
+			styleClass="btn btn-primary" style="margin-right: 5px" />
+		<h:link outcome="CadastrarAnimal" value="Novo Animal"
+			styleClass="btn btn-primary" />
+		<h:form style="margin-top: 20px">
+			<h:dataTable value="#{animalBean.animais}" var="animal"
+				styleClass="table table-striped table-hover">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{animal.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{animal.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Tipo</f:facet>
+					<h:outputText value="#{animal.tipo}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Cliente</f:facet>
+					<h:outputText value="#{animal.cliente.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Alterar</f:facet>
+					<h:commandButton action="#{animalBean.detalhar()}" value="Alterar"
+						styleClass="btn btn-warning">
+						<f:param name="idAnimal" value="#{animal.id}" />
+					</h:commandButton>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
